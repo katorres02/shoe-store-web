@@ -22,9 +22,25 @@ class ShoeParser
 
     def save
         shoe
+        ActionCable.server.broadcast "shoe_events_channel", custom_event
     end
 
     private
+
+    def custom_event
+        {
+            store: {
+                id: store.id,
+                name: store.name,
+            },
+            shoe: {
+                id: shoe.id,
+                model: shoe.model,
+                aler: shoe.alert,
+                inventory: shoe.inventory,
+            }
+        }
+    end
 
     def find_or_create_shoe
         shoe = store.shoes.find_or_create_by(model: @model)
