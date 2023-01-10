@@ -14,12 +14,13 @@ describe Shoe, :type => :model do
     describe 'alerts' do
         it 'should update alert when invetory goes down' do
             shoe = create(:shoe, inventory: 50, alert: false)
-            expect(shoe.inventory).to eql(50)
-            expect(shoe.alert).to be_falsey
+            expect(shoe.alert).to eql("white")
 
-            shoe.update(inventory: 6)
-            expect(shoe.inventory).to eql(6)
-            expect(shoe.alert).to be_truthy
+            shoe.update(inventory: 1)
+            expect(shoe.alert).to eql("red")
+
+            shoe.update(inventory: 80)
+            expect(shoe.alert).to eql("green")
         end
     end
 end

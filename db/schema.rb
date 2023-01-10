@@ -18,7 +18,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_01_10_041641) do
     t.bigint "store_id", null: false
     t.string "model", null: false
     t.integer "inventory", default: 0
-    t.boolean "alert", default: false
+    t.integer "alert", default: 1
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["store_id"], name: "index_shoes_on_store_id"

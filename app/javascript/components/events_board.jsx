@@ -34,7 +34,7 @@ const EventsBoard = () => {
             <td>{events[key].store.name}</td>
             <td>{events[key].shoe.model}</td>
             <td>{events[key].shoe.inventory}</td>
-            <td style={{ backgroundColor: events[key].shoe.alert ? 'red'  : ''}} ></td>
+            <td style={{ backgroundColor: events[key].shoe.alert}} ></td>
           </tr>
         ))}
         </tbody>
