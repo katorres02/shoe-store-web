@@ -9,6 +9,6 @@ class Shoe < ApplicationRecord
     private
 
     def update_alert
-        alert = inventory > 20
+        self.alert = self.inventory < 15
     end
 end

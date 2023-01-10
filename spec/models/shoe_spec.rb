@@ -10,4 +10,16 @@ describe Shoe, :type => :model do
     describe 'relations' do
         it { should belong_to(:store) }
     end
+
+    describe 'alerts' do
+        it 'should update alert when invetory goes down' do
+            shoe = create(:shoe, inventory: 50, alert: false)
+            expect(shoe.inventory).to eql(50)
+            expect(shoe.alert).to be_falsey
+
+            shoe.update(inventory: 6)
+            expect(shoe.inventory).to eql(6)
+            expect(shoe.alert).to be_truthy
+        end
+    end
 end
