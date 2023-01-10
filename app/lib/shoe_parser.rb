@@ -29,6 +29,7 @@ class ShoeParser
 
     def custom_event
         {
+            id: "#{store.id}#{shoe.id}",
             store: {
                 id: store.id,
                 name: store.name,
@@ -36,7 +37,7 @@ class ShoeParser
             shoe: {
                 id: shoe.id,
                 model: shoe.model,
-                aler: shoe.alert,
+                alert: shoe.alert,
                 inventory: shoe.inventory,
             }
         }

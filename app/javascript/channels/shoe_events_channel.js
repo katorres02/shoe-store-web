@@ -1,6 +1,6 @@
-import consumer from "channels/consumer"
+import consumer from "./consumer"
 
-consumer.subscriptions.create("ShoeEventsChannel", {
+const ShoeEventsChannel = consumer.subscriptions.create("ShoeEventsChannel", {
   connected() {
     // Called when the subscription is ready for use on the server
     console.log("connected to ShoeEventsChannel")
@@ -12,7 +12,8 @@ consumer.subscriptions.create("ShoeEventsChannel", {
   },
 
   received(data) {
-    console.log(data)
     // Called when there's incoming data on the websocket for this channel
   }
-});
+})
+
+export default ShoeEventsChannel

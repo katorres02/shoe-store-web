@@ -1,0 +1,32 @@
+Arguments: 
+  /Users/carlosandres.torres/.nvm/versions/node/v16.5.0/bin/node /Users/carlosandres.torres/.yarn/bin/yarn.js add esbuild
+
+PATH: 
+  /Users/carlosandres.torres/.rvm/gems/ruby-2.7.5/bin:/Users/carlosandres.torres/.rvm/gems/ruby-2.7.5@global/bin:/Users/carlosandres.torres/.rvm/rubies/ruby-2.7.5/bin:/Users/carlosandres.torres/.rvm/bin:/Users/carlosandres.torres/.yarn/bin:/Users/carlosandres.torres/.config/yarn/global/node_modules/.bin:/Users/carlosandres.torres/.nvm/versions/node/v16.5.0/bin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:/Library/Apple/usr/bin
+
+Yarn version: 
+  1.22.19
+
+Node version: 
+  16.5.0
+
+Platform: 
+  darwin x64
+
+Trace: 
+  Error: https://registry.yarnpkg.com/esbuild: ETIMEDOUT
+      at Timeout._onTimeout (/Users/carlosandres.torres/.yarn/lib/cli.js:141550:19)
+      at listOnTimeout (node:internal/timers:557:17)
+      at processTimers (node:internal/timers:500:7)
+
+npm manifest: 
+  {
+    "name": "app",
+    "private": "true"
+  }
+
+yarn manifest: 
+  No manifest
+
+Lockfile: 
+  No lockfile

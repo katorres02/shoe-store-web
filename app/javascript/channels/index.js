@@ -1,2 +1,2 @@
 // Import all the channels to be used by Action Cable
-import "channels/shoe_events_channel"
+import "./shoe_events_channel"
