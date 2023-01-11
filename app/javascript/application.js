@@ -2,4 +2,4 @@
 import "@hotwired/turbo-rails"
 import "./controllers"
 import "./channels"
-import "./components/events_board"
+import "./components/app"

@@ -6,7 +6,7 @@ namespace :shoe_store do
 
             ws_conn.on :message do |event|
                 p JSON.parse(event.data)
-                ShoeParser.process(event)
+                HugeFlashSale::EventParser.process(event)
             end
 
             ws_conn.on :close do |event|

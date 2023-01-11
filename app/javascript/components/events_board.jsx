@@ -1,6 +1,5 @@
 import '../channels'
 import React, { useState, useEffect } from 'react'
-import ReactDOM from 'react-dom'
 import ShoeEventsChannel from '../channels/shoe_events_channel'
 
 const EventsBoard = () => {
@@ -18,14 +17,15 @@ const EventsBoard = () => {
   })
 
   return (
-    <div>
-      <table>
+    <div style={{float: "left", width: '600px'}}>
+      <h2>REALTIME SALES</h2>
+      <table style={{marginTop: '45px'}}>
         <thead>
           <tr>
-            <th>Company</th>
-            <th>Shoe Model</th>
-            <th>Inventory Left</th>
-            <th>Inventory Alert</th>
+            <th><u>Company</u></th>
+            <th><u>Shoe Model</u></th>
+            <th><u>Inventory Left</u></th>
+            <th><u>Inventory Alert</u></th>
           </tr>
         </thead>
         <tbody>
@@ -40,11 +40,8 @@ const EventsBoard = () => {
         </tbody>
       </table>
     </div>
+    
   )
 }
 
-document.addEventListener('DOMContentLoaded', () => {
-  ReactDOM.render(
-    <EventsBoard />,
-    document.getElementById('app'))
-})
+export default EventsBoard

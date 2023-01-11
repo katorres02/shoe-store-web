@@ -7,6 +7,14 @@ class Shoe < ApplicationRecord
 
     before_save :update_alert
 
+    def self.low_stock
+        self.where(alert: 'red').includes(:store)
+    end
+
+    def self.big_stock_for(model_name)
+        self.where(model: model_name, alert: 'green').includes(:store)
+    end
+
     private
 
     def update_alert
