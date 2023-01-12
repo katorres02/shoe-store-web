@@ -1,9 +1,39 @@
 import '../channels'
 import React, { useState, useEffect } from 'react'
 import ShoeEventsChannel from '../channels/shoe_events_channel'
+import { useQuery, gql } from '@apollo/client';
 
 const EventsBoard = () => {
   const [events, setEvents] = useState({})
+
+  const GET_SALES = gql`
+    query GetSales {
+      shoes {
+        customId
+        id
+        model
+        inventory
+        alert
+        store {
+          id
+          name
+        }
+      }
+    }
+  `;
+
+  const { loading, error, u } = useQuery(GET_SALES, {
+    onCompleted: (data) => {
+      data.shoes.map((shoe) =>{
+        let new_shoe = {}
+        new_shoe[shoe.customId] = shoe
+        setEvents(events => ({
+          ...events,
+          ...new_shoe
+        }));
+      })
+    },
+  })
 
   useEffect(() => { 
     ShoeEventsChannel.received = (newEvent) => {
@@ -16,7 +46,9 @@ const EventsBoard = () => {
     }
   })
 
-  return (
+  if (loading) return <p>Loading...</p>;
+  if (error) return <p>Error : {error.message}</p>;
+  if (!loading && !error) return (
     <div style={{float: "left", width: '600px'}}>
       <h2>REALTIME SALES</h2>
       <table style={{marginTop: '45px'}}>

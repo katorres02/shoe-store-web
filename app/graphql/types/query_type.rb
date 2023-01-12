@@ -10,7 +10,7 @@ module Types
     field :shoes, [Types::ShoeType] ,null: true
 
     def shoes
-      Shoe.all
+      Shoe.order(:model)
     end
   end
 end
