@@ -4,6 +4,7 @@ module Types
         field :name, String, null: false
         field :shoes, [Types::ShoeType], null: true
 
+        # implemented batch loader gem to avoid n+1 issues
         def shoes
             BatchLoader::GraphQL.for(object.id).batch(default_value: []) do |store_ids, loader|
                 Shoe.where(store_id: store_ids).each do |shoe|

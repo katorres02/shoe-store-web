@@ -12,6 +12,7 @@ module Types
             "#{object.store_id}#{object.id}"
         end
 
+        # implemented batch loader gem to avoid n+1 issues
         def store
             BatchLoader::GraphQL.for(object.store_id).batch do |store_ids, loader|
                 Store.where(id: store_ids).each do |store|
