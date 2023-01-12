@@ -8,9 +8,14 @@ module Types
     # They will be entry points for queries on your schema.
 
     field :shoes, [Types::ShoeType] ,null: true
+    field :suggestions_report, [Types::SuggestionReportType], null: true
 
     def shoes
       Shoe.order(:model)
+    end
+
+    def suggestions_report
+      HugeFlashSale::SuggestionsReport.new.generate
     end
   end
 end

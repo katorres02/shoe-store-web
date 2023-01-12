@@ -1,6 +1,7 @@
 import '../channels'
 import React, { useState, useEffect } from 'react'
 import SuggestionsReportChannel from '../channels/suggestions_report_channel'
+import { useQuery, gql } from '@apollo/client';
 
 const SuggestionsBoard = () => {
   const [suggestions, setSuggestions] = useState([])
@@ -11,7 +12,24 @@ const SuggestionsBoard = () => {
     }
   })
 
-  return (
+  const GET_REPORT = gql`
+    query GetReport {
+      suggestionsReport{
+        id
+        low
+        high
+      }
+    }
+    `;
+
+    const { loading, error, u } = useQuery(GET_REPORT, {
+        onCompleted: (report) => {
+          setSuggestions(report.suggestionsReport);
+        }
+    })
+  if (loading) return <p>Loading...</p>;
+  if (error) return <p>Error : {error.message}</p>;
+  if (!loading && !error) return (
     <div style={{float: "left", width: '900px', marginLeft: '100px'}}>
       <h2>SUGGEESTED SHOE TRANSFERS</h2>
       <table >
