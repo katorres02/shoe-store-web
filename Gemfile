@@ -49,6 +49,8 @@ gem "bootsnap", require: false
 
 gem 'redis'
 gem 'jsbundling-rails'
+gem 'graphql'
+gem 'batch-loader', '~> 2.0.1'
 
 group :development, :test do
   # See https://guides.rubyonrails.org/debugging_rails_applications.html#debugging-with-the-debug-gem
@@ -83,3 +85,4 @@ group :development, :test do
     gem lib, git: "https://github.com/rspec/#{lib}.git", branch: 'main'
   end
 end
+gem "graphiql-rails", group: :development

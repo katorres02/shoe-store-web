@@ -36,14 +36,14 @@ const SuggestionsBoard = () => {
         {suggestions.map((val) => (
           <tr key={val.id}>
             <td>{val.low.store.name}</td>
-            <td>{val.low.shoe.model}</td>
-            <td>{val.low.shoe.inventory}</td>
-            <td style={{ backgroundColor: val.low.shoe.alert}} ></td>
+            <td>{val.low.model}</td>
+            <td>{val.low.inventory}</td>
+            <td style={{ backgroundColor: val.low.alert}} ></td>
 
             <td>{val.high.store.name}</td>
-            <td>{val.high.shoe.model}</td>
-            <td>{val.high.shoe.inventory}</td>
-            <td style={{ backgroundColor: val.high.shoe.alert}} ></td>
+            <td>{val.high.model}</td>
+            <td>{val.high.inventory}</td>
+            <td style={{ backgroundColor: val.high.alert}} ></td>
           </tr>
         ))}
         </tbody>

@@ -8,7 +8,7 @@ const EventsBoard = () => {
   useEffect(() => { 
     ShoeEventsChannel.received = (newEvent) => {
       let updatedEvent = {}
-      updatedEvent[newEvent.id] = newEvent
+      updatedEvent[newEvent.customId] = newEvent
       setEvents(events => ({
         ...events,
         ...updatedEvent
@@ -29,12 +29,12 @@ const EventsBoard = () => {
           </tr>
         </thead>
         <tbody>
-        {Object.keys(events).map((key, index) => (
+        {Object.keys(events).map((key) => (
           <tr key={key}>
             <td>{events[key].store.name}</td>
-            <td>{events[key].shoe.model}</td>
-            <td>{events[key].shoe.inventory}</td>
-            <td style={{ backgroundColor: events[key].shoe.alert}} ></td>
+            <td>{events[key].model}</td>
+            <td>{events[key].inventory}</td>
+            <td style={{ backgroundColor: events[key].alert}} ></td>
           </tr>
         ))}
         </tbody>
