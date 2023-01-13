@@ -1,5 +1,5 @@
 module HugeFlashSale
-    class EventParser
+    class ProcessSale
         attr_reader :store_name, :model
 
         def self.process(event)
@@ -7,7 +7,7 @@ module HugeFlashSale
         end
 
         def initialize(event)
-            json_event  = JSON.parse(event.data)
+            json_event  = JSON.parse(event)
             @store_name = json_event['store']
             @model      = json_event['model']
             @inventory  = json_event['inventory']

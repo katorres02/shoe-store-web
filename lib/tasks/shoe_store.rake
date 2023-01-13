@@ -6,7 +6,11 @@ namespace :shoe_store do
 
             ws_conn.on :message do |event|
                 p JSON.parse(event.data)
-                HugeFlashSale::EventParser.process(event)
+                begin
+                    SalesJob.perform_async(event.data)
+                rescue
+                    p "invalid json event sale : #{event.data}"
+                end
             end
 
             ws_conn.on :close do |event|

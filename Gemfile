@@ -51,6 +51,7 @@ gem 'redis'
 gem 'jsbundling-rails'
 gem 'graphql'
 gem 'batch-loader', '~> 2.0.1'
+gem 'sidekiq'
 
 group :development, :test do
   # See https://guides.rubyonrails.org/debugging_rails_applications.html#debugging-with-the-debug-gem
