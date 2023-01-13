@@ -1,6 +1,6 @@
 FactoryBot.define do
     factory :shoe do
-        model { "sample model" }
+        sequence(:model) { |n| "sample model #{n}" }
         store
         alert { false }
         inventory { 0 }
