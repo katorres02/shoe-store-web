@@ -3,7 +3,7 @@ module HugeFlashSale
         attr_reader :store_name, :model
 
         def self.process(event)
-            new(event).save
+            new(event).broadcast_events
         end
 
         def initialize(event)
@@ -19,10 +19,6 @@ module HugeFlashSale
 
         def shoe
             @shoe ||= find_or_create_shoe
-        end
-
-        def save
-            broadcast_events
         end
 
         def suggestions_report
