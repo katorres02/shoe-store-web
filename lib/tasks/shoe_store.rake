@@ -8,7 +8,8 @@ namespace :shoe_store do
                 p JSON.parse(event.data)
                 begin
                     SalesJob.perform_async(event.data)
-                rescue
+                rescue => e
+                    p e
                     p "invalid json event sale : #{event.data}"
                 end
             end

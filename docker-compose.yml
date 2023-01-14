@@ -1,0 +1,67 @@
+version: '3'
+services:
+  shoe_store_web:
+    build: .
+    command: bash -c "rm -f tmp/pids/server.pid && bin/rails s -p 3000 -b '0.0.0.0'"
+    environment:
+      RAILS_ENV: development
+    volumes:
+      - .:/shoe_store
+      - ./tmp/db:/var/lib/postgresql/data
+    ports:
+      - "3000:3000"
+    env_file:
+      - .env
+    depends_on:
+      - db
+      - redis
+      - sidekiq
+      - pull_events
+  db:
+    image: postgres
+    volumes:
+      - ./tmp/db:/var/lib/postgresql/data
+    environment:
+      POSTGRES_USER: falcon_user
+      POSTGRES_PASSWORD: falcon_user
+    expose:
+      - "5433" # Publishes 5433 to other containers but NOT to host machine
+    ports:
+      - "5433:5433"
+    command: -p 5433
+  redis:
+    image: redis
+    command: redis-server
+    ports:
+      - "6379"
+    volumes:
+      - ./tmp/redis:/var/lib/redis/data
+  sidekiq:
+    build: .
+    command: bash -c "bundle exec sidekiq -C config/sidekiq.yml"
+    depends_on:
+      - db
+      - redis
+  pull_events:
+    build: .
+    command: bash -c "rake shoe_store:pull_events"
+    depends_on:
+      - db
+      - redis
+      - sidekiq
+      - websocket_server
+    networks:
+      - websocket
+  websocket_server:
+    build: ./shoe-store
+    command: bash -c "websocketd --port=8080 --devconsole -address 0.0.0.0 ruby inventory.rb"
+    expose:
+      - "8080"
+    ports:
+      - "8080:8080"
+    networks:
+      - websocket
+
+networks:
+  websocket:
+    external: true
